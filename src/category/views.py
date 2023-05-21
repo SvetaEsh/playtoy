@@ -16,6 +16,4 @@ def home_page(request):
     return HttpResponse(html)
 
 def prodimport(request):
-
-
     return HttpResponse("hello")
