@@ -5,7 +5,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(
         verbose_name = "Имя категории",
-        max_length=50
+        max_length=100
     )
     description = models.TextField(
         verbose_name = "Описание категории",
@@ -24,7 +24,7 @@ class Type(models.Model):
     )
     name = models.CharField(
         verbose_name = "Название типа",
-        max_length=50
+        max_length=100
     )
     description = models.TextField(
         verbose_name = "Описание типа",
@@ -43,7 +43,7 @@ class Product(models.Model):
     )
     name = models.CharField(
         verbose_name = "Название товара",
-        max_length=50
+        max_length=100
     )
     description = models.TextField(
         verbose_name = "Описание товара",
