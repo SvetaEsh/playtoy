@@ -20,6 +20,10 @@ from category import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('product/', views.home_page),
-    path('import/', views.prodimport),
+    path('type/', views.list_type),
+    path('type/<int:pk>', views.views_type),
+    path('type-delete/<int:pk>', views.delete_type),
+    path('category/', views.list_category),
+    path('category/<int:pk>', views.views_category),
+    path('category-delete/<int:pk>', views.delete_category)
 ]

@@ -3,28 +3,32 @@ from django.http import HttpResponse
 from . import models
 
 # Create your views here.
-def home_page(request):
-    type_pk = request.GET.get("type")
-    print(type_pk)
-    type_print = models.Type.objects.filter(pk=type_pk)
-    html = "<ul>"
-    models.Type.objects.
-    for tp in type_print:
-        html += f"<li> {tp.pk} Товар {tp.name}</li>"
-    html += "</ul>"
+def list_type(request):
+    types = models.Type.objects.all()
+    return render(request, template_name="category/list-type.html", context={'types': types})
 
-    return HttpResponse(html)
 
-def prodimport(request):
-    list_data = []
-    with open('import/data.txt', '+r', encoding="utf-8") as file_import:
-        while True:
-            # считываем строку
-            line = file_import.readline()
-            # прерываем цикл, если строка пустая
-            if not line:
-                break
-            prfadd = models.Product(name)
-            list_data.append(line.strip('\n'))
-                             
-    return HttpResponse("hello")
+def views_type(request, pk):
+    type=models.Type.objects.get(pk=int(pk))
+    return render(request, template_name="category/view-type.html", context={'type': type})
+
+
+def delete_type(request, pk):
+    models.Type.objects.get(pk=int(pk)).delete()
+    return render(request, template_name="category/delete-type.html", context={'type': type})
+
+
+def list_category(request):
+    categories = models.Category.objects.all()
+    return render(request, template_name="category/list_category.html", context={'categories': categories})
+
+
+def views_category(request, pk):
+    category=models.Category.objects.get(pk=int(pk))
+    types=models.Type.objects.filter(category=int(pk))
+    return render(request, template_name="category/view-category.html", context={'category': category, 'types': types})
+
+
+def delete_category(request, pk):
+    models.Category.objects.get(pk=int(pk)).delete()
+    return render(request, template_name="category/delete-category.html", context={'category': category})
