@@ -20,7 +20,7 @@ from category import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include('main.urls')),
+    path('', include('main.urls')),
     path('type-cbv/', views.TypeListView.as_view()),
     path('type-cbv/<int:pk>', views.TypeView.as_view()),
     path('type-delete-cbv/<int:pk>', views.TypeDeleteView.as_view()),
