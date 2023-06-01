@@ -7,7 +7,10 @@
     <title >Удалить категорию</title>
 </head>
 <body>
-    <h1> Категорию {{object.pk}} удалить? </h1>
-    
+    <h1> Категорию {{object.name}} удалить? </h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
 </body>
 </html>

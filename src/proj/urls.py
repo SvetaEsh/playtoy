@@ -31,6 +31,6 @@ urlpatterns = [
     path('category-cbv/<int:pk>', views.CategoryViews.as_view()),
     path('category-delete-cbv/<int:pk>', views.CategoryDeleteView.as_view()), 
     path('category-add-cbv/', views.CategoryCreateView.as_view()),
-    path('category-update-cbv/', views.CategoryUpdateView.as_view())
+    path('category-update-cbv/<int:pk>', views.CategoryUpdateView.as_view())
 ]
 #<img src="{{object.book_image}}" alt=" ">rk.
