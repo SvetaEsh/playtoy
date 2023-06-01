@@ -15,21 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from category import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", include('main.urls')),
     path('type-cbv/', views.TypeListView.as_view()),
     path('type-cbv/<int:pk>', views.TypeView.as_view()),
     path('type-delete-cbv/<int:pk>', views.TypeDeleteView.as_view()),
     path('type-add-cbv/', views.TypeCreateView.as_view()),
     path('added/', views.success_page),
     path('type-update-cbv/<int:pk>', views.TypeUpdateView.as_view()),
-    path('', views.HomePage.as_view()),
     path('category-cbv/', views.CategoryListViews.as_view()),
     path('category-cbv/<int:pk>', views.CategoryViews.as_view()),
-    path('category-delete/<int:pk>', views.delete_category), 
-    path('category-add/', views.add_category),
+    path('category-delete-cbv/<int:pk>', views.CategoryDeleteView.as_view()), 
+    path('category-add-cbv/', views.CategoryCreateView.as_view()),
+    path('category-update-cbv/', views.CategoryUpdateView.as_view())
 ]
 #<img src="{{object.book_image}}" alt=" ">rk.

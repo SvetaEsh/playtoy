@@ -10,6 +10,7 @@
     <h1> Добавить новую категорию</h1>
     <form action="" method="post">
         {% csrf_token %}
+        {{form.as_p}}
         <button type="submit">Добавить категорию</button>
     </form>
 </body>

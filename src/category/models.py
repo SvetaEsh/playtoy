@@ -39,3 +39,5 @@ class Type(models.Model):
 
     def get_absolute_url(self):
         return f"/type-cbv/{self.pk}"
+    
+    

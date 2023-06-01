@@ -8,8 +8,6 @@ from . import forms
 
 
 # Create your views here.
-class HomePage(generic.TemplateView):
-    template_name="category/home-page.html"
 
 
 class TypeListView(generic.ListView):
@@ -46,7 +44,7 @@ class TypeCreateView(generic.CreateView):
 
 
 def success_page(request):
-    return render(request, template_name="category/add-succesfully.html", context={"message": f"Тип создан!"})
+    return render(request, template_name="category/add-succesfully.html", context={"message": f"Создан!"})
 
 
 class TypeUpdateView(generic.UpdateView):
@@ -68,15 +66,32 @@ class CategoryViews(generic.DetailView):
     model = models.Category
     form_class = forms.CategoryModelForm
     template_name = "category/view-category.html"
-    #for type in model.type
     
+    
+class CategoryDeleteView(generic.DeleteView):
+    model=models.Category
+    template_name="category/delete-category.html"
+    success_url="/"
+    
+    
+class CategoryCreateView(generic.CreateView):
+    model=models.Category
+    form_class=forms.CategoryModelForm
+    template_name="category/add-category.html"
+    success_url="/added"
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context["greeting"] = "Добавить новую категорию"
+        return context  
 
-def delete_category(request, pk):
-    models.Category.objects.get(pk=int(pk)).delete()
-    return render(request, template_name="category/delete-category.html", context={'category': category})
-    
-def add_category(request):
-    return render(request, template_name="category/add-category.html", context={})
+class CategoryUpdateView(generic.UpdateView):
+    model=models.Category
+    form_class=forms.CategoryModelForm
+    template_name="category/update-category.html"
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context["greeting"]= "Что хотите изменить"
+        return context
 
 
        
