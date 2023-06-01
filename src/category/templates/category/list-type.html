@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title >Document</title>
+    <title >Типы</title>
 </head>
 <body>
+    
     <table border=1>
         <tr> 
             <td> PK </td>
             <td> Name </td>
             <td> Actions </td>
         </tr>
-        {% for type in types %}
+        {% for obj in object_list %}
         <tr>
-            <td> Type PK: {{type.pk}}</td>
-            <td> Type name: {{type.name}}</td>
-            <td> <a href='{{type.pk}}'> view </a> </td>
+            <td> {{obj.pk}}</td>
+            <td> {{obj.name}}</td>
+            <td> <a href='../type-cbv/{{obj.pk}}'> view </a> </td>
         </tr>
         {% endfor %}
     </table>

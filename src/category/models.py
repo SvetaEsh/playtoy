@@ -9,6 +9,7 @@ class Category(models.Model):
     )
     description = models.TextField(
         verbose_name = "Описание категории",
+        max_length=1000,
         null = True,
         blank = True
     )
@@ -20,7 +21,8 @@ class Type(models.Model):
     category=models.ForeignKey(
         Category,
         on_delete=models.PROTECT,
-        verbose_name="Категория"
+        verbose_name="Категория",
+        related_name='category_rn'
     )
     name = models.CharField(
         verbose_name = "Название типа",
@@ -28,10 +30,12 @@ class Type(models.Model):
     )
     description = models.TextField(
         verbose_name = "Описание типа",
+        max_length=1000,
         null = True,
         blank = True
     )
     def __str__(self) -> str:
         return self.name
 
-
+    def get_absolute_url(self):
+        return f"/type-cbv/{self.pk}"

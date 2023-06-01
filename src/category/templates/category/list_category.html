@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title >Document</title>
+    <title >Список категорий</title>
 </head>
 <body>
     <table border=1>
@@ -13,11 +13,11 @@
             <td> Имя категории </td>
             <td> Ссылка на категорию </td>
         </tr>
-        {% for category in categories %}
+        {% for obj in object_list %}
         <tr>
-            <td> {{category.pk}}</td>
-            <td> {{category.name}}</td>
-            <td> <a href='{{category.pk}}'> просмотреть </a> </td>
+            <td> {{obj.pk}}</td>
+            <td> {{obj.name}}</td>
+            <td> <a href='{{obj.pk}}'> просмотреть </a> </td>
         </tr>
         {% endfor %}
     </table>

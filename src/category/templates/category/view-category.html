@@ -8,19 +8,21 @@
 </head>
 
 <body>
-    <h1> Категория игрушек №{{category.pk}} </h1>
-    <h2> Название категории: {{category.name}} </h2>
+    
+    <h1> Название категории: {{object.name}} </h2>
+    <h2> Описание категории: {{object.description}}</h3>
+        
     <table border=1>
         <tr> 
-            <td> Type PK </td>
-            <td> Type Name </td>
-            <td> Actions </td>
+            <td> № тип </td>
+            <td> Имя типа </td>
+            <td> Действие </td>
         </tr>
-        {% for type in types %}
+        {% for type in object.category_rn.all %}
         <tr>
             <td> {{type.pk}}</td>
             <td> {{type.name}}</td>
-            <td> <a href='../type/{{type.pk}}'> view </a> </td>
+            <td> <a href='../type-cbv/{{type.pk}}'> view </a> </td>
         </tr>
         {% endfor %}
     </table>    
