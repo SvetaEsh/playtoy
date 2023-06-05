@@ -11,7 +11,9 @@
         <tr>
             <td> {{obj.pk}}</td>
             <td> {{obj.name}}</td>
-            <td> <a href='{{obj.pk}}'> просмотреть </a> </td>
+            <td> <a href='../category-cbv/{{obj.pk}}'> просмотреть </a>
+                <a href='../category-update-cbv/{{obj.pk}}'> редактировать </a>
+                <a href='../category-delete-cbv/{{obj.pk}}'> удалить </a> </td>
         </tr>
         {% endfor %}
     </table>

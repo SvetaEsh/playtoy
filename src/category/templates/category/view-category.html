@@ -15,7 +15,9 @@
         <tr>
             <td> {{type.pk}}</td>
             <td> {{type.name}}</td>
-            <td> <a href='../type-cbv/{{type.pk}}'> просмотреть </a> </td>
+            <td> <a href='../type-cbv/{{type.pk}}'> просмотреть </a>
+                <a href='../type-update-cbv/{{type.pk}}'> редактировать </a>
+                <a href='../type-delete-cbv/{{type.pk}}'> удалить </a> </td>
         </tr>
         {% endfor %}
     </table>    
