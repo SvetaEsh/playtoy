@@ -11,9 +11,9 @@
         <tr>
             <td> {{obj.pk}}</td>
             <td> {{obj.name}}</td>
-            <td> <a href='../type-cbv/{{obj.pk}}'> просмотреть </a>
-                <a href='../type-update-cbv/{{obj.pk}}'> редактировать </a>
-                <a href='../type-delete-cbv/{{obj.pk}}'> удалить </a> </td>
+            <td> <a href='{% url "category:view-type" pk=obj.pk %}'> просмотреть </a>
+                <a href='{% url "category:update-type" pk=obj.pk %}'> редактировать </a>
+                <a href='{% url "category:delete-type" pk=obj.pk %}'> удалить </a> </td>
         </tr>
         {% endfor %}
     </table>

@@ -16,22 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from category import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('', include('feedback.urls')),
-    path('type-cbv/', views.TypeListView.as_view()),
-    path('type-cbv/<int:pk>', views.TypeView.as_view()),
-    path('type-delete-cbv/<int:pk>', views.TypeDeleteView.as_view()),
-    path('type-add-cbv/', views.TypeCreateView.as_view()),
-    path('added/', views.success_page),
-    path('type-update-cbv/<int:pk>', views.TypeUpdateView.as_view()),
-    path('category-cbv/', views.CategoryListViews.as_view()),
-    path('category-cbv/<int:pk>', views.CategoryViews.as_view()),
-    path('category-delete-cbv/<int:pk>', views.CategoryDeleteView.as_view()), 
-    path('category-add-cbv/', views.CategoryCreateView.as_view()),
-    path('category-update-cbv/<int:pk>', views.CategoryUpdateView.as_view())
+    path('category/', include('category.urls', namespace='category'))
 ]
 #<img src="{{object.book_image}}" alt=" ">rk.

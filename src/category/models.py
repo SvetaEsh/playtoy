@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse_lazy
 
 # Create your models here.
 class Category(models.Model):
@@ -16,11 +16,12 @@ class Category(models.Model):
     def __str__(self) -> str:
         return self.name
     def get_absolute_url(self):
-        return f"/category-cbv/{self.pk}"
+        return reverse_lazy('category:view-category', kwargs={"pk": self.pk})
+        
 
 
 class Type(models.Model):
-    category=models.ForeignKey(
+    category=models.ForeignKey(  
         Category,
         on_delete=models.PROTECT,
         verbose_name="Категория",
@@ -40,6 +41,6 @@ class Type(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return f"/type-cbv/{self.pk}"
+        return reverse_lazy('category:view-type', kwargs={"pk": self.pk})
     
     

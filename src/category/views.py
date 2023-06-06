@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from . import models
 from . import forms
-
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -36,7 +36,7 @@ class TypeCreateView(generic.CreateView):
     model=models.Type
     form_class=forms.TypeModelForm
     template_name="category/add-type.html"
-    success_url="/added"
+    success_url=reverse_lazy("category:success-page")
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"] = "Добавь новый тип"
@@ -78,7 +78,7 @@ class CategoryCreateView(generic.CreateView):
     model=models.Category
     form_class=forms.CategoryModelForm
     template_name="category/add-category.html"
-    success_url="/added"
+    success_url=reverse_lazy("category:success-page")
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"] = "Добавить новую категорию"
