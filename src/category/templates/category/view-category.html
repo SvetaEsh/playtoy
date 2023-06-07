@@ -15,9 +15,9 @@
         <tr>
             <td> {{type.pk}}</td>
             <td> {{type.name}}</td>
-            <td> <a href='{% url "category:view-type" pk=type.pk %}'> просмотреть </a>
-                <a href='{% url "category:update-type" pk=type.pk %}'> редактировать </a>
-                <a href='{% url "category:delete-type" pk=type.pk %}'> удалить </a> </td>
+            <td> <a href='{% url "category:view-type" pk=type.pk %}'> <i class="bi bi-eye"></i> </a>
+                <a href='{% url "category:update-type" pk=type.pk %}'> <i class="bi bi-pen"></i> </a>
+                <a href='{% url "category:delete-type" pk=type.pk %}'> <i class="bi bi-trash3"></i> </a> </td>
         </tr>
         {% endfor %}
     </table>    

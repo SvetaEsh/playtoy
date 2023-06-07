@@ -29,7 +29,8 @@ class Type(models.Model):
     )
     name = models.CharField(
         verbose_name = "Название типа",
-        max_length=100
+        max_length=100,
+        help_text="pls add type name"
     )
     description = models.TextField(
         verbose_name = "Описание типа",
