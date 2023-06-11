@@ -3,4 +3,6 @@
 {% block BODY %}
     <h1> Название типа: {{object.name}} </h1>
     <b> Описание типа: {{object.description}} </b>
+    
+    <br><img src="{{object.picture.url}}" class="img-thumbnail" width=100>
 {% endblock BODY %}

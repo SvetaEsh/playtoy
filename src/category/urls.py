@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+
 app_name='category'
 urlpatterns = [
     path('type/', views.TypeListView.as_view(), name="type"),
@@ -14,3 +15,4 @@ urlpatterns = [
     path('category-add/', views.CategoryCreateView.as_view(), name="create-category"),
     path('category-update/<int:pk>', views.CategoryUpdateView.as_view(), name="update-category")
 ]
+

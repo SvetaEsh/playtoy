@@ -13,13 +13,13 @@ from django.urls import reverse_lazy
 class TypeListView(generic.ListView):
     model=models.Type
     template_name="category/list-type.html"
-    fields=["category", "name", "description"]
+    fields=["category", "name", "description", "picture"]
 
 
 class TypeView(generic.DetailView):
     model=models.Type
     template_name="category/view-type.html"
-    fields=["category", "name", "description"]
+    fields=["category", "name", "description", "picture"]
 
 
 class TypeDeleteView(generic.DeleteView):
@@ -49,7 +49,7 @@ def success_page(request):
 
 class TypeUpdateView(generic.UpdateView):
     model=models.Type
-    fields=["category", "name", "description"]
+    fields=["category", "name", "description", "picture"]
     template_name="category/update-type.html"
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)

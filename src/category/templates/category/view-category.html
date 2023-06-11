@@ -4,16 +4,15 @@
     
     <h1> Название категории: {{object.name}} </h2>
     <h2> Описание категории: {{object.description}}</h3>
-        
+    <img src="{{object.picture.url}}" class="img-thumbnail" width=100>    
     <table class="table table-bordered">
         <tr> 
-            <td> № тип </td>
             <td> Имя типа </td>
             <td> Действие </td>
         </tr>
         {% for type in object.category_rn.all %}
         <tr>
-            <td> {{type.pk}}</td>
+            
             <td> {{type.name}}</td>
             <td> <a href='{% url "category:view-type" pk=type.pk %}'> <i class="bi bi-eye"></i> </a>
                 <a href='{% url "category:update-type" pk=type.pk %}'> <i class="bi bi-pen"></i> </a>

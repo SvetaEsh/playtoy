@@ -13,6 +13,10 @@ class Category(models.Model):
         null = True,
         blank = True
     )
+    picture = models.ImageField(
+        verbose_name = "Картинка категории",
+        upload_to="uploads/%Y/%m/%d"
+    )
     def __str__(self) -> str:
         return self.name
     def get_absolute_url(self):
@@ -37,6 +41,10 @@ class Type(models.Model):
         max_length=1000,
         null = True,
         blank = True
+    )
+    picture = models.ImageField(
+        verbose_name = "Картинка категории",
+        upload_to="uploads/%Y/%m/%d"
     )
     def __str__(self) -> str:
         return self.name

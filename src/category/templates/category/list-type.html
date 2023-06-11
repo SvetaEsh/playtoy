@@ -3,13 +3,11 @@
 {% block BODY %}    
     <table class="table table-bordered">
         <tr> 
-            <td> PK </td>
             <td> Name </td>
             <td> Actions </td>
         </tr>
         {% for obj in object_list %}
         <tr>
-            <td> {{obj.pk}}</td>
             <td> {{obj.name}}</td>
             <td> <a href='{% url "category:view-type" pk=obj.pk %}'> <i class="bi bi-eye"></i> </a>
                 <a href='{% url "category:update-type" pk=obj.pk %}'> <i class="bi bi-pen"></i> </a>
