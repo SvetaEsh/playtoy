@@ -36,7 +36,6 @@ class ProductCreateView(generic.CreateView):
     model=models.Product
     form_class=forms.ProductModelForm
     template_name="product/add-product.html"
-    success_url=reverse_lazy("product:view-product")
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"] = "Добавь новый тип"
@@ -47,7 +46,6 @@ class ProductUpdateView(generic.UpdateView):
     model=models.Product
     form_class=forms.ProductModelForm
     template_name="product/update-product.html"
-    success_url=reverse_lazy("product:view-product")
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"]= "Что хотите изменить"

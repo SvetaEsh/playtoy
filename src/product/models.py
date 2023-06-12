@@ -1,5 +1,8 @@
 from django.db import models
-import category
+from category.models import Category
+from category.models import Type
+from django.urls import reverse_lazy
+
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(
@@ -29,24 +32,26 @@ class Product(models.Model):
         decimal_places=2,
     )
     category = models.ForeignKey(  
-        category.Category,
+        Category,
         on_delete=models.PROTECT,
         verbose_name="Категория товара",
-        related_name='category_rn'
+        related_name='category_rev'
     )
     type = models.ForeignKey(  
-        category.Type,
+        Type,
         on_delete=models.PROTECT,
         verbose_name="Тип товара",
-        related_name='type_rn'
+        related_name='type_rev'
     )
     country = models.CharField(
         verbose_name='Страна производителя',
+        max_length = 50,
         null = True,
         blank = True
     )
     brand = models.CharField(
         verbose_name='Бренд',
+        max_length = 50,
         null = True,
         blank = True
     )
@@ -60,6 +65,7 @@ class Product(models.Model):
     )
     search_terms = models.CharField(
         verbose_name="Поисковые запросы",
+        max_length = 500,
         null = True,
         blank = True        
     )

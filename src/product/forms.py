@@ -4,7 +4,7 @@ from . import models
 
 class ProductModelForm(forms.ModelForm):
     class Meta:
-        model = models.Type
+        model = models.Product
         fields = [
             "name",
             "item_number", 
@@ -19,9 +19,4 @@ class ProductModelForm(forms.ModelForm):
             "count",
             "search_terms",
             "discount"
-
-
         ]
-    
-    
-    
