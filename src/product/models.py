@@ -79,4 +79,6 @@ class Product(models.Model):
     )
     def __str__(self) -> str:
         return self.name
+    def get_absolute_url(self):
+        return reverse_lazy('product:view-product', kwargs={"pk": self.pk})
 

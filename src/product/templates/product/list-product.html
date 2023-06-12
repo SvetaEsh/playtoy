@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block TITLE %}Список товаров{% endblock TITLE %}
+{% block BODY %}    
+    <table class="table table-bordered">
+        <tr> 
+            <td> Name </td>
+
+            <td> Actions </td>
+        </tr>
+        {% for obj in object_list %}
+        <tr>
+            <td> {{obj.name}}</td>
+            <td> <a href='{% url "product:view-product" pk=obj.pk %}'> <i class="bi bi-eye"></i> </a>
+                <a href='{% url "product:update-product" pk=obj.pk %}'> <i class="bi bi-pen"></i> </a>
+                <a href='{% url "product:delete-product" pk=obj.pk %}'> <i class="bi bi-trash3"></i> </a> </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+{% endblock BODY %}

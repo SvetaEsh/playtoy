@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block TITLE %}Товар{% endblock TITLE %}
+{% block BODY %}
+    <h1> Название товара: {{object.name}} </h1>
+    <b> Артикул товара: {{object.item_number}}</b>
+    <br><img src="{{object.picture.url}}" class="img-thumbnail" width=100>
+    <b> Описание товара: {{object.description}} </b>
+    <b> Цена: {{object.price}}</b>
+    <b> {{object.category}}</b>
+    <b> {{object.type}}</b>
+    <b> {{object.country}}</b>
+    <b> {{object.brand}}</b>
+    <b> {{object.enable}}</b>
+    <b> {{object.count}}</b>
+    <b> {{object.search_terms}}</b>
+    <b> {{discount}}</b>
+    
+    
+{% endblock BODY %}
