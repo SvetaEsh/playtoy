@@ -82,7 +82,10 @@ class CategoryCreateView(generic.CreateView):
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"] = "Добавить новую категорию"
-        return context  
+        return context
+    def get_success_url(self) -> str:
+        self.object.picture_resizer
+        return super().get_success_url()  
 
 class CategoryUpdateView(generic.UpdateView):
     model=models.Category

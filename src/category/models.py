@@ -1,5 +1,12 @@
 from django.db import models
 from django.urls import reverse_lazy
+from PIL import Image
+from pathlib import Path
+
+
+
+
+
 
 # Create your models here.
 class Category(models.Model):
@@ -21,7 +28,17 @@ class Category(models.Model):
         return self.name
     def get_absolute_url(self):
         return reverse_lazy('category:view-category', kwargs={"pk": self.pk})
-        
+    def picture_resizer(self):
+        extention = self.picture.file.name.split('.')[-1]
+        BASE_DIR = Path(self.picture.file.name).resolve().parent
+        file_name = Path(self.picture.file.name).resolve().name.split('.')
+        for m_basewidth in [150,40]:
+            m_basewidth=150
+            im=Image.open(self.picture.file.name)
+            wpercent = (m_basewidth/float(im.size[0]))
+            hsize = int((float(im.size[1])*float(wpercent)))
+            im.thumbnail((m_basewidth,hsize), Image.Resampling.LANCZOS)
+            im.save(str(BASE_DIR/".".join.file_name[:-1]) + f'_{m_basewidth}_.' + extention)    
 
 
 class Type(models.Model):
@@ -52,4 +69,14 @@ class Type(models.Model):
     def get_absolute_url(self):
         return reverse_lazy('category:view-type', kwargs={"pk": self.pk})
     
-    
+    def picture_resizer(self):
+        extention = self.picture.file.name.split('.')[-1]
+        BASE_DIR = Path(self.picture.file.name).resolve().parent
+        file_name = Path(self.picture.file.name).resolve().name.split('.')
+        for m_basewidth in [150,40]:
+            m_basewidth=150
+            im=Image.open(self.picture.file.name)
+            wpercent = (m_basewidth/float(im.size[0]))
+            hsize = int((float(im.size[1])*float(wpercent)))
+            im.thumbnail((m_basewidth,hsize), Image.Resampling.LANCZOS)
+            im.save(str(BASE_DIR/".".join.file_name[:-1]) + f'_{m_basewidth}_.' + extention)
