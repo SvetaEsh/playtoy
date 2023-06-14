@@ -8,14 +8,22 @@
     <img src="{{object.product_picture_small}}" ><br>
     <b> Описание товара: {{object.description}} </b><br>
     <b> Цена: {{object.price}}</b><br>
-    <b> {{object.category}}</b><br>
-    <b> {{object.type}}</b><br>
-    <b> {{object.country}}</b><br>
-    <b> {{object.brand}}</b><br>
-    <b> {{object.enable}}</b><br>
-    <b> {{object.count}}</b><br>
-    <b> {{object.search_terms}}</b><br>
-    <b> {{discount}}</b><br>
+    <b> Категория товара: {{object.category}}</b><br>
+    <b> Тип товара: {{object.type}}</b><br>
+    <b> {% if object.country %} Страна производителя: {{object.country}} <br>{% endif %}</b>
+    <b> {% if object.brand %}
+        Бренд: {{object.brand}}<br>
+        {% endif %}
+    </b>
+    <b> Видимость: {{object.enable}}</b><br>
+    <b> {% if object.count %}
+        Наличие товара: Товар есть на складе
+        {% else %}
+        Товара нет в наличии
+        {% endif %}
+    </b><br>
+    <b> Поисковые запросы: {{object.search_terms}}</b><br>
+    <b> Скидка в %: {{discount}}</b><br>
     
     
 {% endblock BODY %}
