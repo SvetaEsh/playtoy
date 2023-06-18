@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block TITLE %}Изменить тип{% endblock TITLE %}
 {% block BODY %}
+{% if perms.update_type %} 
     <h1> {{greeting}} </h1>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit" class="btn btn-success">Изменить тип</button>
     </form>
+{% endif %}
 {% endblock BODY %}

@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block TITLE %}Добавить тип{% endblock TITLE %}
 {% block BODY %}
+
+{% if perms.add_type %}
     <h1> {{greeting}}</h1>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit" class="btn btn-warning">Добавить тип</button>
     </form>
+{% endif %}
 {% endblock BODY %}

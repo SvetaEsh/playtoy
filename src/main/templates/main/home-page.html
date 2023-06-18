@@ -12,7 +12,13 @@
     <h1>Главная</h1>
     
     <p><a href='{% url "category:category" %}'>КАТЕГОРИИ </a></p>
-
+    {{user}}<br>
+    {{user.is_authenticated}}<br>
+    {% if user.is_authenticated %}
+    YES!!<br>
+    {% endif%}
+    {{user.is_anonymous}}<br>
+    
 
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">

@@ -4,6 +4,7 @@ from . import forms
 from django.conf import settings
 import os
 from pathlib import Path
+from django.contrib.auth.mixins import PermissionRequiredMixin
 # Create your views here.
 
 def picture_deletizer(path):
@@ -34,19 +35,23 @@ class CardProductView(generic.DetailView):
     template_name="product/card-product.html"
     #form_class=forms.ProductModelForm
 
-class ProductDeleteView(generic.DeleteView):
+class ProductDeleteView(PermissionRequiredMixin, generic.DeleteView):
+    login_url=reverse_lazy('staff:login')
     model=models.Product
     template_name="product/delete-product.html"
     success_url="/"
+    permission_required=["product.add_product"]
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"] = "Удалить товар"
         return context
 
-class ProductCreateView(generic.CreateView):
+class ProductCreateView(PermissionRequiredMixin, generic.CreateView):
+    login_url=reverse_lazy('staff:login')
     model=models.Product
     form_class=forms.ProductModelForm
     template_name="product/add-product.html"
+    permission_required=["product.add_product"]
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"] = "Добавь новый тип"
@@ -55,10 +60,12 @@ class ProductCreateView(generic.CreateView):
         self.object.picture_resizer() #_resizer
         return super().get_success_url()
 
-class ProductUpdateView(generic.UpdateView):
+class ProductUpdateView(PermissionRequiredMixin, generic.UpdateView):
+    login_url=reverse_lazy('staff:login')
     model=models.Product
     form_class=forms.ProductModelForm
     template_name="product/update-product.html"
+    permission_required=["product.update_product"]
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"]= "Что хотите изменить"

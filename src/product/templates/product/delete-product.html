@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% block TITLE %}Удалить товар{% endblock TITLE %}
 {% block BODY %}
+{% if perms.product.delete_product %}
     <h1> {{greeting}} {{object.name}} ? </h1>
     <form action="" method="post">
         {% csrf_token %}
         
     <button type="submit" class="btn btn-danger">Удалить</button>
     </form>
-   
+{% endif %}   
 {% endblock BODY %}

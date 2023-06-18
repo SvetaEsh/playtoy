@@ -25,7 +25,8 @@ urlpatterns = [
     path('', include('main.urls')),
     path('', include('feedback.urls')),
     path('category/', include('category.urls', namespace='category')),
-    path('product/', include('product.urls', namespace='product'))
+    path('product/', include('product.urls', namespace='product')),
+    path('staff/', include('staff.urls', namespace='staff'))
 ]
 #<img src="{{object.book_image}}" alt=" ">rk.
 

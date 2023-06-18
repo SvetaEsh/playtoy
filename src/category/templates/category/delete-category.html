@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% block TITLE %}Удалить категорию{% endblock TITLE %}
 {% block BODY %}
+{% if perms.delete_category %}  
     <h1> Категорию {{object.name}} удалить? </h1>
     <form action="" method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Удалить</button>
     </form>
+
+{% endif %}
 {% endblock BODY %}
