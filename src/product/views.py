@@ -5,6 +5,7 @@ from django.conf import settings
 import os
 from pathlib import Path
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.urls import reverse_lazy
 # Create your views here.
 
 def picture_deletizer(path):
