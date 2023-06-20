@@ -20,8 +20,7 @@ class Cart(models.Model):
 class Status(models.Model):
     name=models.CharField(
         verbose_name="Статус заказа",
-        max_length=25,
-        default="Новый"
+        max_length=25
     )
     def __str__(self) -> str:
         return self.name
@@ -76,10 +75,11 @@ class Order(models.Model):
     status = models.ForeignKey(
         Status,
         verbose_name="Статус заказа",
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        default="Новый"
     )
     created = models.DateTimeField(
-        verbose_name="Дата и время создания товара", 
+        verbose_name="Дата и время создания заказа", 
         auto_now_add=True,
         auto_now=False
     )
