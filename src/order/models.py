@@ -1,6 +1,7 @@
 from django.db import models
 from product.models import Product
 from django.contrib.auth import get_user_model
+from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 User = get_user_model()
@@ -69,8 +70,10 @@ class Order(models.Model):
     adress = models.TextField(
         verbose_name = "Адрес доставки"
     )
-    telefon = models.IntegerField(
-        verbose_name="Телефон"
+    telefon = PhoneNumberField(
+        verbose_name="Телефон",
+        null = False, 
+        blank = False
     )
     status = models.ForeignKey(
         Status,
@@ -88,5 +91,5 @@ class Order(models.Model):
         auto_now_add=False,
         auto_now=True
     )
-    def __str__(self) -> str:
-        return self.name
+    #def __str__(self) -> str:
+    #    return self.name

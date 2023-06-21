@@ -14,6 +14,7 @@ from pathlib import Path
 from . import local_settings
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
+    'phonenumber_field',
     'category',
     'main',
     'feedback',

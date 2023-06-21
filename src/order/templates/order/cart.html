@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block TITLE %}Добавить товар{% endblock TITLE %}
+{% block BODY %}
+<h1>Заказ</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Наименование</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Цена</th>
+      </tr>
+    </thead>
+    
+    
+    <tbody>
+        {% for good_in_cart in object.goods.all %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{good_in_cart.good.name}}</td>
+        <td>{{good_in_cart.quantity}}</td>
+        <td>{{good_in_cart.price}}</td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+{% endblock BODY %}
