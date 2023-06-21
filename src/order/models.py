@@ -15,6 +15,11 @@ class Cart(models.Model):
         null=True,
         blank=True
     )
+    def total_price(self):
+        total_price=0
+        for good_in_cart in self.goods.all:
+            total_price+=good_in_cart.price
+        return total_price
     #def __str__(self) -> str:
     #    return self.name
 
