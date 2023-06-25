@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+{% load  crispy_forms_tags %}
 {% block TITLE %}Добавить товар{% endblock TITLE %}
 {% block BODY %}
 <h1>Заказ</h1>
+
+{% comment %}
 <table class="table">
     <thead>
       <tr>
@@ -34,18 +37,12 @@
       </tr>  
     </tbody>
   </table>
-  <a href="{% url 'order:create-order'%}" class = "btn btn-outline-primary">Оформить заказ</a>
-  <script>
-    function addGood(pk) {
-      console.log("add" +pk)
-      redirect("add", pk)
-    }
-    function deleteGood(pk) {
-      console.log("delete" + pk)
-      redirect("delete", pk)
-    }
-    function redirect(action, pk){
-      window.location.href="{% url 'order:cart-items-edit' %}" + `?action=${action}&good=${pk}`;
-    }
-  </script>
+{% endcomment %}
+   
+<form action="" method="post">
+    {%csrf_token%}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-danger">Оформить</button>
+</form>
+  
 {% endblock BODY %}

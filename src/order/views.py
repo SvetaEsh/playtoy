@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import DetailView
-from . import models
+from django.views.generic import DetailView, CreateView, FormView
+from . import models, forms
+from order.models import Status
 from product.models import Product
+from django.conf import settings
 
 # Create your views here.
 class CartDetailView(DetailView):
@@ -74,8 +76,36 @@ class CartAddDeleteItemView(DetailView):
             if action == "add":
                 term=1
             else:
+                if good_in_cart.quantity <= 1:
+                    good_in_cart.delete()
+                    return cart
                 term=-1
             good_in_cart.quantity=good_in_cart.quantity + term
             good_in_cart.price=good_in_cart.quantity*price
             good_in_cart.save()
         return cart
+
+class CreateOrder(FormView):
+    form_class = forms.CreateOrderForm
+    template_name="order/create_order.html"
+    def form_valid(self, form):
+        adress=form.cleaned_data.get("adress")
+        print(adress)
+        telefon=form.cleaned_data.get("telefon")
+        print(telefon)
+        print(settings.ORDER_STATUS_NEW)
+        status=Status.objects.get(pk=settings.ORDER_STATUS_NEW)
+        cart_pk=self.request.session.get("cart_id")
+        print(cart_pk)
+        cart = get_object_or_404(
+                models.Cart,
+                pk=int(cart_pk)                               
+            )
+        obj= models.Order.objects.create(
+            adress=adress,
+            telefon=telefon,
+            status=status,
+            cart=cart
+        )
+        return super().form_valid(form)
+    

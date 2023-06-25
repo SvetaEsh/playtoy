@@ -90,8 +90,7 @@ class Order(models.Model):
     status = models.ForeignKey(
         Status,
         verbose_name="Статус заказа",
-        on_delete=models.PROTECT,
-        default="Новый"
+        on_delete=models.PROTECT
     )
     created = models.DateTimeField(
         verbose_name="Дата и время создания заказа", 
