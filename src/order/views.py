@@ -11,7 +11,8 @@ class CartDetailView(DetailView):
     model=models.Cart
     
     def get_object(self, *args, **kwargs):
-        cart_pk=self.request.session.get("cart_id")
+        cart_pk=self.request.session.get('cart_pkid')
+        print("start ", cart_pk)
         customers=self.request.user
         if customers.is_anonymous:
             customers=None
@@ -42,7 +43,8 @@ class CartDetailView(DetailView):
                 good_in_cart.save()
 
             if created:
-                self.request.session['card_id']=cart.pk
+                self.request.session['cart_pkid']=cart.pk
+            print("start ", cart.pk)    
 
         return cart
     
