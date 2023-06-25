@@ -53,7 +53,8 @@ class CartAddDeleteItemView(DetailView):
     model=models.Cart
     
     def get_object(self, *args, **kwargs):
-        cart_pk=self.request.session.get("cart_id")
+        cart_pk=self.request.session.get('cart_pkid')
+        print("start ", cart_pk)
         customers=self.request.user
         if customers.is_anonymous:
             customers=None
@@ -63,9 +64,9 @@ class CartAddDeleteItemView(DetailView):
                 "customers": customers
             }
         )
-        good_id=self.request.GET.get("good")
+        good_id=self.request.GET.get("good_id")
         action=self.request.GET.get("action")
-        if good_id and action and action in ["add", "delete"]:
+        if good_id and action and action in ['add', 'delete']:
             
             good=Product.objects.get(pk=int(good_id))
             price=good.price
@@ -73,8 +74,9 @@ class CartAddDeleteItemView(DetailView):
             good_in_cart = get_object_or_404(
                 models.GoodInCart,
                 cart=cart,
-                good=good,                
+                good=good
             )
+
             if action == "add":
                 term=1
             else:
@@ -84,7 +86,9 @@ class CartAddDeleteItemView(DetailView):
                 term=-1
             good_in_cart.quantity=good_in_cart.quantity + term
             good_in_cart.price=good_in_cart.quantity*price
-            good_in_cart.save()
+            good_in_cart.save()      
+
+        print("start ", cart.pk)    
         return cart
 
 class CreateOrder(FormView):

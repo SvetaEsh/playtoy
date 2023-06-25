@@ -37,15 +37,15 @@
   <a href="{% url 'order:create-order'%}" class = "btn btn-outline-primary">Оформить заказ</a>
   <script>
     function addGood(pk) {
-      console.log("add" +pk)
+      console.log("add " +pk)
       redirect("add", pk)
     }
     function deleteGood(pk) {
-      console.log("delete" + pk)
+      console.log("delete " + pk)
       redirect("delete", pk)
     }
     function redirect(action, pk){
-      window.location.href="{% url 'order:cart-items-edit' %}" + `?action=${action}&good=${pk}`;
+      window.location.href=`{% url 'order:cart-edit' %}?action=${action}&good_id=${pk}`
     }
   </script>
 {% endblock BODY %}
