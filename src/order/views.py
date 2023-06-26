@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import DetailView, CreateView, FormView
+from django.views.generic import DetailView, TemplateView, FormView
+from django.urls import reverse_lazy
 from . import models, forms
 from order.models import Status
 from product.models import Product
@@ -94,6 +95,7 @@ class CartAddDeleteItemView(DetailView):
 class CreateOrder(FormView):
     form_class = forms.CreateOrderForm
     template_name="order/create_order.html"
+    success_url=reverse_lazy("order:complete-order")
     def form_valid(self, form):
         adress=form.cleaned_data.get("adress")
         print(adress)
@@ -125,4 +127,9 @@ class CreateOrder(FormView):
             pk=int(cart_id)
         )
         return context
+    
+
+class OrderSuccess(TemplateView):
+               
+        template_name = "order/order-complete.html"
     
