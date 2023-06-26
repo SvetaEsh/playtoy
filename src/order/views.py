@@ -101,7 +101,7 @@ class CreateOrder(FormView):
         print(telefon)
         print(settings.ORDER_STATUS_NEW)
         status=Status.objects.get(pk=settings.ORDER_STATUS_NEW)
-        cart_pk=self.request.session.get("cart_id")
+        cart_pk=self.request.session.get("cart_pkid")
         print(cart_pk)
         cart = get_object_or_404(
                 models.Cart,
@@ -113,5 +113,6 @@ class CreateOrder(FormView):
             status=status,
             cart=cart
         )
+        del self.request.session["cart_pkid"]
         return super().form_valid(form)
     
