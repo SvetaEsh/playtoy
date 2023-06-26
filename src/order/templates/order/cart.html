@@ -34,9 +34,9 @@
       </tr>  
     </tbody>
   </table>
-{% if good_in_cart.good.all %}
-  <a href="{% url 'order:create-order'%}" class = "btn btn-outline-primary">Оформить заказ</a>
-{% endif %}  
+  {% if object.goods.all %}
+    <a href="{% url 'order:create-order'%}" class = "btn btn-outline-primary">Оформить заказ</a>
+  {% endif %}  
   <script>
     function addGood(pk) {
       console.log("add " +pk)

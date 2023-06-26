@@ -4,14 +4,14 @@
 {% block BODY %}
 <h1>Заказ</h1>
 
-{% comment %}
+
 <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Наименование</th>
         <th scope="col">Количество</th>
-        <th scope="col">Изменить количество</th>
+        
         <th scope="col">Цена</th>
       </tr>
     </thead>
@@ -23,21 +23,20 @@
         <th scope="row">{{forloop.counter}}</th>
         <td>{{good_in_cart.good.name}}</td>
         <td>{{good_in_cart.quantity}}</td>
-        <td><button type="button" onclick = "addGood({{good_in_cart.good.pk}})" class="btn btn-outline-primary btn-sm">+</button>
-          <button type="button" onclick = "deleteGood({{good_in_cart.good.pk}})" class="btn btn-outline-danger btn-sm">-</button></td>
+        
         <td>{{good_in_cart.price}}</td>
       </tr>
       {% endfor%}
       <tr>
         <td colspan="2">Общая</td>
         <td >{{object.total_quantity}}</td>
-        <td > </td>
+        
         <td >{{object.total_price}}</td>
         
       </tr>  
     </tbody>
   </table>
-{% endcomment %}
+
    
 <form action="" method="post">
     {%csrf_token%}
