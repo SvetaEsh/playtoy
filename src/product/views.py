@@ -27,6 +27,12 @@ class ProductView(generic.DetailView):
     template_name="product/view-product.html"
     form_class=forms.ProductModelForm
 
+class ProductFilterTypeView(generic.ListView):
+    model=models.Product
+    template_name="product/list-card-product-type.html"
+    form_class=forms.ProductModelForm
+    
+
 class CardProductListView(generic.ListView):
     model=models.Product
     template_name="product/list-card-product.html"
