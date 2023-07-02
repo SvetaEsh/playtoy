@@ -97,10 +97,12 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'css/sticky-footer-navbar.css' %}" rel="stylesheet">
   </head>
+  
 
 
 
-<body class="d-flex flex-column h-100">          
+<body class="d-flex flex-column h-100">   
+    
   <header>
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -142,6 +144,9 @@
 
       </div>
         {% if user.is_authenticated %}
+        <form action="{% url 'staff:profile' %}" class="d-flex">
+          <button class="bi bi-people" >Кабинет</button>
+        </form>
           <form action="{% url 'staff:logout' %}" class="d-flex">
             <button class="bi bi-door-open-fill" >Выйти, {{ user }}</button>
           </form>
@@ -153,7 +158,6 @@
     </nav>
   </header>
 
-
   <main class="flex-shrink-0">
     
     <div class="container">
@@ -161,8 +165,10 @@
   <div style= "
   margin-top: 5%;">
   </div>
-
-        {% block BODY %}{% endblock BODY %}
+  {% include 'includes/messages.html' %}
+        {% block BODY %}
+        
+        {% endblock BODY %}
     </div>
   </main>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
