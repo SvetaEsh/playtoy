@@ -27,31 +27,7 @@ class Category(models.Model):
         return reverse_lazy('category:view-category', kwargs={"pk": self.pk})
     
     
-    def product_picture_med(self):
-        original_url=self.picture.url
-        new_url = original_url.split(".")
-        picture_url = ".".join(new_url[:-1]) + "_150_."+ new_url[-1]
-        print(picture_url)
-        return picture_url
-    def product_picture_small(self):
-        original_url=self.picture.url
-        new_url = original_url.split('.')
-        picture_url = ".".join(new_url[:-1]) + '_40_.'+ new_url[-1]
-        print(picture_url)
-        return picture_url
     
-    def picture_resizer(self):
-        extention = self.picture.file.name.split('.')[-1]
-        BASE_DIR = Path(self.picture.file.name).resolve().parent
-        file_name = Path(self.picture.file.name).resolve().name.split('.')
-        for m_basewidth in [150,40]:
-            im=Image.open(self.picture.file.name)
-            wpercent = (m_basewidth/float(im.size[0]))
-            hsize = int((float(im.size[1])*float(wpercent)))
-            im.thumbnail((m_basewidth,hsize), Image.Resampling.LANCZOS)
-            im.save(str(BASE_DIR/".".join(file_name[:-1])) + f'_{m_basewidth}_.' + extention)
-            
-
 class Type(models.Model):
     category=models.ForeignKey(  
         Category,

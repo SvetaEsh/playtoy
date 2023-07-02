@@ -87,7 +87,6 @@ class CategoryDeleteView(PermissionRequiredMixin, generic.DeleteView):
     template_name="category/delete-category.html"
     success_url="/"
     permission_required=["category.delete_category"]
-
     
 class CategoryCreateView(PermissionRequiredMixin, generic.CreateView):
     login_url=reverse_lazy('staff:login')
@@ -102,23 +101,20 @@ class CategoryCreateView(PermissionRequiredMixin, generic.CreateView):
         context= super().get_context_data(**kwargs)
         context["greeting"] = "Добавить новую категорию"
         return context
-    def get_success_url(self) -> str:
-        self.object.picture_resizer
-        return super().get_success_url()  
-
+    
+ 
 class CategoryUpdateView(PermissionRequiredMixin, generic.UpdateView):
     login_url=reverse_lazy('staff:login')
     model=models.Category
-    form_class=forms.CategoryModelForm
+    fields=["name", "description", "picture"]
     template_name="category/update-category.html"
     permission_required=["category.update_category"]
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"]= "Что хотите изменить"
         return context
-    def get_success_url(self) -> str:
-        self.object.picture_resizer
-        return super().get_success_url() 
+    
+
 
 
        
