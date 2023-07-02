@@ -47,6 +47,9 @@ class TypeCreateView(PermissionRequiredMixin, generic.CreateView):
         context= super().get_context_data(**kwargs)
         context["greeting"] = "Добавь новый тип"
         return context
+    def get_success_url(self) -> str:
+        self.object.picture_resizer
+        return super().get_success_url() 
 
 
 def success_page(request):
@@ -62,8 +65,10 @@ class TypeUpdateView(PermissionRequiredMixin, generic.UpdateView):
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["greeting"]= "Что хотите изменить"
-        return context
-    
+        return context    
+    def get_success_url(self) -> str:        
+        self.object.picture_resizer() #_resizer
+        return super().get_success_url()
 
 class CategoryListViews(generic.ListView):
     model = models.Category
@@ -111,6 +116,9 @@ class CategoryUpdateView(PermissionRequiredMixin, generic.UpdateView):
         context= super().get_context_data(**kwargs)
         context["greeting"]= "Что хотите изменить"
         return context
+    def get_success_url(self) -> str:
+        self.object.picture_resizer
+        return super().get_success_url() 
 
 
        
