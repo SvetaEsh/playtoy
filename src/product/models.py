@@ -92,8 +92,8 @@ class Product(models.Model):
     
     def product_picture_med(self):
         original_url=self.picture.url
-        new_url = original_url.split('.')
-        picture_url = ".".join(new_url[:-1]) + '_150_.'+ new_url[-1]
+        new_url = original_url.split(".")
+        picture_url = ".".join(new_url[:-1]) + "_150_."+ new_url[-1]
         print(picture_url)
         return picture_url
     def product_picture_small(self):
@@ -104,7 +104,6 @@ class Product(models.Model):
         return picture_url
     
     def picture_resizer(self):
-        print("class picture_resizer")
         extention = self.picture.file.name.split('.')[-1]
         BASE_DIR = Path(self.picture.file.name).resolve().parent
         file_name = Path(self.picture.file.name).resolve().name.split('.')
@@ -114,5 +113,3 @@ class Product(models.Model):
             hsize = int((float(im.size[1])*float(wpercent)))
             im.thumbnail((m_basewidth,hsize), Image.Resampling.LANCZOS)
             im.save(str(BASE_DIR/".".join(file_name[:-1])) + f'_{m_basewidth}_.' + extention)
-
-    
