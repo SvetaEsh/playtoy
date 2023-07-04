@@ -1,0 +1,7 @@
+<nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+    <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+    {% for m_item in menu_items %}
+    <a href='{% url "category:view-category" pk=m_item.pk %}' class="nav-item nav-link">{{m_item.name}}</a>
+    {% endfor %}
+    </div>
+</nav>

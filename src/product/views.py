@@ -22,6 +22,14 @@ class ProductListView(generic.ListView):
     template_name="product/list-product.html"
     form_class=forms.ProductModelForm
 
+"""
+class NewProductListView(generic.ListView):
+    model=models.Product
+    template_name="product/list-new-product.html"
+    form_class=forms.ProductModelForm    
+    def get_queryset(self):
+        return super().get_queryset().annotate().order_by('-created')[:10]    
+"""
 class ProductView(generic.DetailView):
     model=models.Product
     template_name="product/view-product.html"
