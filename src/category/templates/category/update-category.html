@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block TITLE %}Изменить категорию{% endblock TITLE %}
 {% block BODY %}
 {% if perms.update_category %} 
     <h1> {{greeting}} </h1>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form|crispy}}
         <button type="submit" class="btn btn-success">Изменить категорию</button>
     </form>
 {% endif %}

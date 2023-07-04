@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block TITLE %}Добавить тип{% endblock TITLE %}
 {% block BODY %}
 
@@ -6,7 +7,7 @@
     <h1> {{greeting}}</h1>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form|crispy}}
         <button type="submit" class="btn btn-warning">Добавить тип</button>
     </form>
 {% endif %}
