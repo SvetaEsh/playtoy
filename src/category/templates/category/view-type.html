@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block TITLE %}Тип{% endblock TITLE %}
 {% block BODY %}
-    <h1> Название типа: {{object.name}} </h1>
-    <b> Описание типа: {{object.description}} </b>
     
-    <br><img src="{{object.product_picture_med}}" class="img-thumbnail" width=100>
+    <img src="{{object.product_picture_med}}" class="align-middle" width=100>
 
+    <h1>{{object.name}} </h1>
+    <b> Описание типа: {{object.description}} </b>    
+    
     {% include 'product/list-card-product-type.html' %}
 
 {% endblock BODY %}
