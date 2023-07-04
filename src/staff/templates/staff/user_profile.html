@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% load  crispy_forms_tags %}
 {% block TITLE %}Кабинет{% endblock TITLE %}
 {% block BODY %}
@@ -6,12 +7,13 @@
 
 
 <h1>Личный кабинет, {{user}}</h1>  
-
+<button type="submit">Просмотреть историю заказов</button>
 
 <form method="post">
   {% csrf_token %}
-  {{ user_form.as_p }}
-  {{ profile_form.as_p }}
+  
+  {{ user_form|crispy }}
+  {{ profile_form|crispy }}
   <button type="submit">Редактировать</button>
 </form>
 
