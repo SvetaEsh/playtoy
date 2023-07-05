@@ -12,18 +12,18 @@
         </div>
     </div>
     <div class="card-footer d-flex justify-content-between bg-light border">
-        <a href="{% url 'product:view-product' pk=product.pk %}" class="btn btn-sm text-dark p-0 border"><i class="fas fa-eye text-primary mr-1"></i>Подробнее</a>
-        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1 border" onclick="addToCart()"></i>Купить</a>
-    </div>
+      <a href="{% url 'product:view-product' pk=product.pk %}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Подробнее</a>
+      <a href="{% url 'order:view-cart' %}?good_id={{product.pk}}&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Купить</a>            
+  </div> 
   </div>
 </div> 
 
 <script>
   function addToCart() {
     console.log("click")
-    quantity=document.getElementById("add-to-cart")
+    quantity=1
     console.log(quantity.value)
-    window.location.href=`{% url 'order:view-cart' %}?good_id={{product.pk}}&quantity=${quantity.value}`
+    window.location.href=`{% url 'order:view-cart' %}?good_id={{product.pk}}&quantity=${quantity}`
   }
 </script>  
 </div>

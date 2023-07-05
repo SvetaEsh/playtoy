@@ -6,7 +6,7 @@ from itertools import chain
 
 register = template.Library()
 
-@register.inclusion_tag('main/popularproduct-list.html', takes_context=True)
+@register.inclusion_tag('product/popularproduct-list.html', takes_context=True)
 def show_top_popularproduct(context, count=6):
     complited_orders = Order.objects.filter(status = 4).values_list("cart_id")
     print("complited_orders: ", complited_orders)
