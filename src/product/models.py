@@ -89,6 +89,9 @@ class Product(models.Model):
         return self.name
     def get_absolute_url(self):
         return reverse_lazy('product:view-product', kwargs={"pk": self.pk})
+    def get_sale(self):
+        price=int(self.price*(100-self.discount)/100)
+        return price
     
     def product_picture_med(self):
         original_url=self.picture.url
