@@ -7,7 +7,11 @@
     <img src="{{object.product_picture_med}}" ><br>
     <img src="{{object.product_picture_small}}" ><br>
     <b> Описание товара: {{object.description}} </b><br>
+    {%if object.discount%}
+    <b> Цена со скидкой: {{object.get_sale}} Старая цена: {{object.price}}</b><br>
+    {% else %}
     <b> Цена: {{object.price}}</b><br>
+    {% endif %}
     <b> Категория товара: {{object.category}}</b><br>
     <b> Тип товара: {{object.type}}</b><br>
     <b> {% if object.country %} Страна производителя: {{object.country}} <br>{% endif %}</b>
@@ -23,7 +27,7 @@
         {% endif %}
     </b><br>
     <b> Поисковые запросы: {{object.search_terms}}</b><br>
-    <b> Скидка в %: {{discount}}</b><br>
+    <b> Скидка в %: {{object.discount}}</b><br>
     
     
 {% endblock BODY %}
