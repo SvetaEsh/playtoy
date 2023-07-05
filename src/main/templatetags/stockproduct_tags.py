@@ -10,9 +10,3 @@ def show_top_stockproduct(context, count=10):
     return {
         "stockproduct_items": stockproduct_items,
     }
-
-def popularity(self):
-        best_seller_products = SoldProduct.objects.filter(product__in=products, order__in=orders).values(
-  'product__pk',).annotate(qty=Sum('quantity')).order_by('-qty')[:6]
-        
-        return 
