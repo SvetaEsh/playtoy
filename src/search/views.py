@@ -3,6 +3,7 @@ from category import models
 from product import models
 from django.db.models import Q
 
+
 # Create your views here.
 def search_view(request):
         
@@ -22,11 +23,11 @@ def search_view(request):
         print(products)
 
         for obj in categories:
-            res.append((obj.name,obj.get_absolute_url))
+            res.append((obj.name,obj.get_absolute_url()))
         for obj in typies:
-            res.append((obj.name,obj.get_absolute_url))
+            res.append((obj.name,obj.get_absolute_url()))
         for obj in products:
-            res.append((obj.name,obj.get_absolute_url))
+            res.append((obj.name,obj.get_absolute_url()))
     context = {"result": res,"q": q }
     return render(request, template_name="search/search_result.html", context=context)
     
