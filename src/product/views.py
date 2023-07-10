@@ -68,7 +68,7 @@ class ProductCreateView(PermissionRequiredMixin, generic.CreateView):
     permission_required=["product.add_product"]
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
-        context["greeting"] = "Добавь новый тип"
+        context["greeting"] = "Добавь новый товар"
         return context
     def get_success_url(self) -> str:
         self.object.picture_resizer() #_resizer
