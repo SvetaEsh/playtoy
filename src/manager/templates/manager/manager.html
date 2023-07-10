@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block TITLE %}Поиск{% endblock TITLE %}
+{% block BODY %}
+
+{% if user.is_superuser or user.is_manager %}
+<a href="{% url 'category:category' %}" class="nav-item nav-link">Категории</a> 
+<a href="{% url 'category:create-category' %}" class="nav-item nav-link">Добавить категорию</a>
+<a href="{% url 'category:type' %}" class="nav-item nav-link">Типы</a>
+<a href="{% url 'category:create-type' %}" class="nav-item nav-link">Добавить тип</a>
+<a href="{% url 'product:list-products' %}" class="nav-item nav-link">Товары</a>
+<a href="{% url 'product:create-product' %}" class="nav-item nav-link">Добавить товар</a>
+
+
+{% endif %}
+
+{% endblock BODY %}
