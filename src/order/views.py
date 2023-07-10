@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, TemplateView, FormView
+from django.views import generic
 from django.urls import reverse_lazy
 from . import models, forms
-from order.models import Status
+from order.models import Status, GoodInCart, Cart, Order
 from product.models import Product
 from django.conf import settings
+
 
 # Create your views here.
 class CartDetailView(DetailView):
@@ -129,7 +131,38 @@ class CreateOrder(FormView):
         return context
     
 
-class OrderSuccess(TemplateView):
-               
+class OrderSuccess(TemplateView):               
         template_name = "order/order-complete.html"
+
+def  history_order(request):
+    data=[]
+    user_id = None
     
+    if request.user.is_authenticated:
+        user_id = request.user
+    # Получили все картs
+    carts = Cart.objects.filter(customers=user_id)
+    print("\ncarts : ", carts)
+
+    # Получили все заказы связанные с картой
+    orders = Order.objects.filter(cart_id__in=carts)
+    print("\norders : ", orders)
+    
+    for order in orders:
+        carts_items = order.cart.goods.all()
+        # следущая строка - то же самое но через фильтр
+        # carts_items = GoodInCart.objects.filter(cart=order.cart)
+        data_items = []
+        for carts_item in carts_items:
+            data_items.append(carts_item)
+        data.append((order,data_items))
+        
+    context = {"result": data}
+    return render(request, template_name="order/history-order.html",context=context)
+
+class OrderDeleteView(generic.DeleteView):
+    
+    model=models.Order
+    template_name="order/delete-order.html"
+    success_url=reverse_lazy("order:history-order")
+      

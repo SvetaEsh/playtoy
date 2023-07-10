@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block TITLE %}Отменить заказ{% endblock TITLE %}
+{% block BODY %}
+  
+    <h1> Заказ {{object.pk}} отменить? </h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Отменить</button>
+    </form>
+
+
+{% endblock BODY %}

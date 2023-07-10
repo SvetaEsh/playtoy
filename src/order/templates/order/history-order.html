@@ -1,3 +1,61 @@
-{% for item_1 in product %}
-{{item_1.id}}
-{% endfor %} 
+{% extends 'base.html' %}
+{% block BODY %}
+<table class="table table-bordered">
+    <thead>
+    <tr> 
+        <td> Номер заказа </td>
+        <td> Статус </td>
+        <td> Товар </td>
+        <td> Количество </td>
+        <td> Цена </td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in result %}
+        <tr>
+        <td>{{ order.0.pk }} </td>
+        
+        <td>{{ order.0.status }} 
+        {% if order.0.status.pk == 1  %}
+
+        <form method="LINK" action="{% url 'order:delete-order' pk=order.0.pk %}">
+            <input type="submit" value="Отменить">
+          </form>
+        {%endif%}
+        </td>
+        <td>
+            <table class="table">
+                
+        {% for good_in_cart in order.1 %}
+            
+        <tr><td>    {{ good_in_cart.good.name }}</td></tr>
+             
+        {%endfor%}
+        </table>
+        </td>
+        <td>
+            <table class="table">
+                
+        {% for good_in_cart in order.1 %}
+            
+        <tr><td>    {{ good_in_cart.quantity }}</td></tr>
+             
+        {%endfor%}
+        </table>
+        </td>
+        <td>
+            <table class="table">
+                
+        {% for good_in_cart in order.1 %}
+            
+        <tr><td>    {{ good_in_cart.price }}</td></tr>
+             
+        {%endfor%}
+        </table>
+        </td>
+        
+        </tr>
+    {%endfor%}
+    </tbody>
+</table>  
+{% endblock BODY %}

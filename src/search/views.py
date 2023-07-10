@@ -28,6 +28,7 @@ def search_view(request):
             res.append((obj.name,obj.get_absolute_url()))
         for obj in products:
             res.append((obj.name,obj.get_absolute_url()))
+    print("res: ", res)
     context = {"result": res,"q": q }
     return render(request, template_name="search/search_result.html", context=context)
     

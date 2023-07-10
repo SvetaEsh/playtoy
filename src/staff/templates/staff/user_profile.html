@@ -7,7 +7,11 @@
 
 
 <h1>Личный кабинет, {{user}}</h1>  
-<button type="submit">Просмотреть историю заказов</button>
+<form method="LINK" action="{% url 'order:history-order' %}">
+  <input type="submit" value="Просмотреть историю заказов">
+</form>
+
+
 
 <form method="post">
   {% csrf_token %}
