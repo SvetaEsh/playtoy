@@ -6,3 +6,14 @@ comment.text <b>создан: {{comment.created}}</b>
 </li>
 {% endfor %}
 </ul>
+<hr>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Текст комментария: </label>
+    <textarea class="form-control" id="comment-text" rows="3"></textarea>
+</div>
+<button class="btn btn-danger" onclick="createCommentTag()">Добавить</button> 
+<script>
+    function createCommentTag() {
+        console.log("click");
+    }
+</script>
