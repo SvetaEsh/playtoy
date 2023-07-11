@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block TITLE %}Изменить заказ{% endblock TITLE %}
+{% block BODY %}
+{% if perms.update_order %} 
+    
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-success">Изменить заказ</button>
+    </form>
+{% endif %}
+{% endblock BODY %}

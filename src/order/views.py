@@ -6,7 +6,7 @@ from . import models, forms
 from order.models import Status, GoodInCart, Cart, Order
 from product.models import Product
 from django.conf import settings
-
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 # Create your views here.
 class CartDetailView(DetailView):
@@ -195,13 +195,7 @@ def  all_order(request):
 class OrderUpdateView(PermissionRequiredMixin, generic.UpdateView):
     login_url=reverse_lazy('staff:login')
     model=models.Order
-    fields=["category", "name", "description", "picture"]
+    fields=["adress", "telefon", "status"]
     template_name="order/update-order.html"
-    permission_required=["category.update_type"]
-    def get_context_data(self, **kwargs):
-        context= super().get_context_data(**kwargs)
-        context["greeting"]= "Что хотите изменить"
-        return context    
-    def get_success_url(self) -> str:        
-        self.object.picture_resizer() #_resizer
-        return super().get_success_url()
+    permission_required=["category.update_order"]
+    success_url=reverse_lazy("order:all-order")
