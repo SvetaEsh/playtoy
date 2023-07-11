@@ -4,7 +4,8 @@ from category.models import Type
 from django.urls import reverse_lazy
 from PIL import Image
 from pathlib import Path
-
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(
@@ -75,6 +76,7 @@ class Product(models.Model):
         verbose_name="Скидка в %",
         default=0
     )
+    comment = GenericRelation(Comment)
     created = models.DateTimeField(
         verbose_name="Дата и время создания товара", 
         auto_now_add=True,

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load comment_tag %}
 {% block TITLE %}Товар{% endblock TITLE %}
 {% block BODY %}
     <h1> Название товара: {{object.name}} </h1>
@@ -34,8 +35,10 @@
         </div>
         <div class="col">
             <button class="btn btn-danger" onclick="addToCart()">Купить</button>
-        </div>
-    <script>
+    </div>
+</div>    
+    {% comments_tag object %}
+      <script>
         function addToCart() {
           console.log("click")
           quantity=document.getElementById("add-to-cart")
