@@ -10,5 +10,5 @@ urlpatterns = [
     path('history-order/', views.history_order, name="history-order"),
     path('delete-order/<int:pk>', views.OrderDeleteView.as_view(), name="delete-order"),
     path('all-order/', views.all_order, name="all-order"),
-    path('update-order//<int:pk>', views.OrderUpdateView.as_view(), name="update-order")
+    path('update-order/<int:pk>', views.OrderUpdateView.as_view(), name="update-order")
 ]
