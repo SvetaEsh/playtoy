@@ -28,6 +28,19 @@
     </b><br>
     <b> Поисковые запросы: {{object.search_terms}}</b><br>
     <b> Скидка в %: {{object.discount}}</b><br>
-    
-    
+    <div class="row">
+        <div class="col">
+            <input type="number" id="add-to-cart" class="form-control" min="1" max="100" value="1">
+        </div>
+        <div class="col">
+            <button class="btn btn-danger" onclick="addToCart()">Купить</button>
+        </div>
+    <script>
+        function addToCart() {
+          console.log("click")
+          quantity=document.getElementById("add-to-cart")
+          console.log(quantity.value)
+          window.location.href=`{% url 'order:view-cart' %}?good_id={{object.pk}}&quantity=${quantity.value}`
+        }
+      </script>    
 {% endblock BODY %}
