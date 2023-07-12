@@ -9,5 +9,6 @@ class CommentSerializer(serializers.ModelSerializer):
             "id",
             "text",
             "content_type",
-            "object_id"
+            "object_id",
+            "created"
         ]

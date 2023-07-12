@@ -12,5 +12,7 @@ def comments_tag(context, obj):
         content_type = content_type,
         object_id=obj.pk)
     return {
-        "comments": comments
+        "comments": comments,
+        "object_id": obj.pk,
+        "content_type": content_type
     }

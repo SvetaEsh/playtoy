@@ -1,5 +1,5 @@
 <h2>Комментарии:</h2>
-<ul>
+<ul id="comments-list">
 {% for comment in comments %}
 <li>
 {{comment.text}} <b>создан: {{comment.created}}</b>
@@ -11,9 +11,24 @@
     <label for="exampleFormControlTextarea1" class="form-label">Текст комментария: </label>
     <textarea class="form-control" id="comment-text" rows="3"></textarea>
 </div>
-<button class="btn btn-danger" onclick="createCommentTag()">Добавить</button> 
+<button class="btn btn-danger" onclick="createCommentTags()">Добавить</button>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 <script>
-    function createCommentTag() {
-        console.log("click");
+    text = document.getElementById("comment-text")
+    ul = document.getElementById("comments-list")
+    function createCommentTags() {
+        axios.post('http://127.0.0.1:8000/comment/api-comment/', {
+            "text": text.value,
+            "content_type": {{content_type.pk}},
+            "object_id": {{object_id}}
+        })
+        .then(function(response){
+            console.log(response)
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(`${response.data.text} | <b>${response.data.created} </b>`));
+            ul.appendChild(li);
+            text.value = ""
+
+        })
     }
 </script>
