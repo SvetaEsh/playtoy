@@ -95,6 +95,12 @@
                       <a href="{% url 'contact' %}" class="nav-item nav-link">Контакты</a>
                   </div>
                   <div class="navbar-nav ml-auto py-0">
+                    {% if user.is_superuser or user.is_manager %}
+                        <a href="{% url 'manager:manager' %}" class="nav-item nav-link">Управление</a>
+                    {% endif%}
+
+
+
                     {% if user.is_authenticated %}
                       <a href="{% url 'staff:profile' %}" class="nav-item nav-link">Кабинет</a>                      
                       <a href="{% url 'staff:logout' %}" class="nav-item nav-link">Выйти, {{ user }}</a>
