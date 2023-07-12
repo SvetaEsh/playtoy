@@ -32,7 +32,7 @@ urlpatterns = [
     path('staff/', include('staff.urls', namespace='staff')),
     path('order/', include('order.urls', namespace='order')),
     path('', include('search.urls', namespace='search')),
-    
+    path('', include('manager.urls', namespace='manager')), 
     path('comment/', include('comment.urls', namespace='comment')),
     path('api-auth/', include('rest_framework.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

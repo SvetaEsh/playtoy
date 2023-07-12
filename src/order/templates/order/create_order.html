@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load  crispy_forms_tags %}
+{% load  comment_tag %}
 {% block TITLE %}Добавить товар{% endblock TITLE %}
 {% block BODY %}
 <h1>Заказ</h1>
@@ -43,5 +44,6 @@
     {{form|crispy}}
     <button type="submit" class="btn btn-danger">Оформить</button>
 </form>
+  {% comments_tag object %}
   
 {% endblock BODY %}
